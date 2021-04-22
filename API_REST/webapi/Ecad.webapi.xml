@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ecad.webapi</name>
+    </assembly>
+    <members>
+        <member name="M:webapi.Controllers.MusicController.GetMusics">
+            <summary>
+            Obtem todas as musicas
+            </summary>   
+            <returns>Objeto contendo musicas.</returns>  
+        </member>
+        <member name="M:webapi.Controllers.MusicController.SaveMusic(Domain.Models.Entities.Music)">
+            <summary>
+            Cria uma nova musica        
+            </summary>
+            <param name="music">Objeto Musica</param>
+            <returns>Objeto contendo dados de uma musica.</returns>  
+        </member>
+        <member name="M:webapi.Controllers.MusicController.EditMusic(Domain.Models.Entities.Music)">
+            <summary>
+            Alterar uma musica  
+            </summary>
+            <param name="music">Objeto Musica</param>
+            <returns>Objeto contendo dados de uma musica.</returns>  
+        </member>
+    </members>
+</doc>
