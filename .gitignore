@@ -9,3 +9,6 @@
 /API_REST/webapi/bin/Debug/netcoreapp2.2
 /API_REST/webapi/obj
 /API_REST/webapi/Ecad
+/REACT_FRONT/node_modules/.cache
+/REACT_FRONT/node_modules/.bin
+/REACT_FRONT/node_modules
