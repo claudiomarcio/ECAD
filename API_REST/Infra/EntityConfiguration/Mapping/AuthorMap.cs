@@ -11,7 +11,7 @@ namespace Infra.EntityConfiguration.Mapping
         {         
             {
                 builder.ToTable("Author");
-                builder.HasKey(x => x.CodAuthor);
+                builder.HasKey(x => x.CodAuthor);                
                 builder.Property(x => x.CodAuthor).ValueGeneratedOnAdd();
 
             }

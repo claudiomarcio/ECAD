@@ -25,7 +25,7 @@ namespace Infra.EntityConfiguration
             }
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionbuilder)
-        {
+        {            
             optionbuilder.UseSqlite($@"Data Source={$@"{AppDomain.CurrentDomain.BaseDirectory}\ecad.db"}");
         }
 
@@ -46,20 +46,24 @@ namespace Infra.EntityConfiguration
             //Music
             modelBuilder.Entity<Music>()
                .HasOne(e => e.Gender)
-               .WithMany(c => c.Musics);
+               .WithMany(c => c.Musics)
+               .HasForeignKey(p => p.CodGender);
 
             modelBuilder.Entity<Music>()
                .HasOne(e => e.Author)
-               .WithMany(c => c.Musics);
+               .WithMany(c => c.Musics)
+               .HasForeignKey(p => p.CodAuthor);
 
             //Author
             modelBuilder.Entity<Author>()
                 .HasMany(c => c.Musics)
                 .WithOne(e => e.Author);
+       
 
             modelBuilder.Entity<Author>()
               .HasOne(c => c.Category)
-              .WithMany(e => e.Authors);
+              .WithMany(e => e.Authors)
+              .HasForeignKey(p => p.CodCategory);
 
             //Gender
             modelBuilder.Entity<Gender>()

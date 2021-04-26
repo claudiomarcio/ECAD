@@ -8,6 +8,6 @@ namespace Domain.Interfaces.Repository
 {
     public interface IMusicRepository : IRepositoryBase<Music>
     {
-     
+        Music UpdateMusic(Music music);
     }
 }

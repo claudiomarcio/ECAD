@@ -37,12 +37,57 @@ namespace webapi.Controllers
         public object GetMusics()
         {
             try
-            {               
-                return StatusCode(200, _musicRepository.GetAll());
+            {
+                var listMusics = new List<Music>();
+                foreach (var item in _musicRepository.GetAll())
+                {
+                    item.AuthorName = _authorRepository.GetById(item.CodAuthor).Name;
+                    item.GenderName = _genderRepository.GetById(item.CodGender).Name;
+                    item.Author = null;
+                    item.Gender = null;
+                    listMusics.Add(item);
+                }
+
+                return StatusCode(200, listMusics);
             }
             catch (Exception ex)
             {
                 return StatusCode(500,ex.StackTrace);
+            }
+        }
+
+        /// <summary>
+        /// Obtem todos os generos
+        /// </summary>   
+        /// <returns>Objeto contendo generos.</returns>  
+        [HttpGet("[controller]/v1/GetGender")]
+        public object GetGenders()
+        {
+            try
+            {
+                return StatusCode(200, _genderRepository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.StackTrace);
+            }
+        }
+
+
+        /// <summary>
+        /// Obtem todos os Autores
+        /// </summary>   
+        /// <returns>Objeto contendo autores.</returns>  
+        [HttpGet("[controller]/v1/GetAuthors")]
+        public object GetAuhtors()
+        {
+            try
+            {
+                return StatusCode(200, _authorRepository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.StackTrace);
             }
         }
 
@@ -55,11 +100,7 @@ namespace webapi.Controllers
         public object SaveMusic([FromBody] Music music)
         {
             try
-            {
-
-                music.Author = _authorRepository.GetById(music.Author.CodAuthor);
-                music.Gender = _genderRepository.GetById(music.Gender.CodGender);
-
+            {         
                 return StatusCode(200, _musicRepository.Add(music));
             }
             catch (Exception ex)
@@ -77,12 +118,8 @@ namespace webapi.Controllers
         public object EditMusic([FromBody] Music music)
         {
             try
-            {
-                music.Author = _authorRepository.GetById(music.Author.CodAuthor);
-                music.Gender = _genderRepository.GetById(music.Gender.CodGender);
-
-                _musicRepository.Update(music);
-                return StatusCode(200);
+            {                                           
+                return StatusCode(200, _musicRepository.UpdateMusic(music));
             }
             catch (Exception ex)
             {

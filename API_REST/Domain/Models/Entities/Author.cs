@@ -10,5 +10,6 @@ namespace Domain.Models.Entities
         public string Name { get; set; }
         public List<Music> Musics { get; set; }
         public Category Category { get; set; }
+        public int CodCategory { get; set; }
     }
 }
